@@ -4,6 +4,10 @@
  * all of the tests that will be run against your application.
  */
 
+
+/* *** NOTE: A spec contains one or more expectations that test the state of the code. *** */ 
+
+
 /* We're placing all of our tests within the $() function,
  * since some of these tests may require DOM elements. We want
  * to ensure they don't run until the DOM is ready.
@@ -27,10 +31,19 @@ $(function() {
         });
 
 
+
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+         it('should have URL defined', function() {
+             for (var i=0; i < allFeeds.length; i++) {
+                //console.log(allFeeds[i].url);
+                expect(allFeeds[i].url).toBeDefined();
+                expect(allFeeds[i].url.length).not.toBe(0);
+             }
+         });
+
 
 
         /* TODO: Write a test that loops through each feed
