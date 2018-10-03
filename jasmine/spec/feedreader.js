@@ -132,7 +132,27 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-         
+         // declare variables
+         let firstFeed;
+         let secondFeed;
+
+         // code to execute before each spec
+         beforeEach(function(done) {
+            loadFeed(2, function() {
+                firstFeed = document.querySelector('.entry-link').innerHTML;
+                done();
+            });
+
+            loadFeed(2, function() {
+                secondFeed = document.querySelector('.entry-link').innerHTML;
+                done();
+            });
+         });
+
+        it('loads new feeds', function(done) {
+            expect(secondFeed !== firstFeed).toBe(true);
+            done();
+        });
 
     });
 
