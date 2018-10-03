@@ -77,7 +77,21 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+        it('should toggle visibility when clicked', function() {
+            // set up our target elements
+            let menuElem = document.getElementsByTagName('body')[0];
+            let menuIconElem = document.querySelector('.menu-icon-link');
 
+            // use click() to simulate first click on element
+            menuIconElem.click();
+            // menu-hidden class should be removed on first click
+            expect(menuElem.classList.contains('menu-hidden')).toBe(false);
+
+            // use click() to simulate second click on element
+            menuIconElem.click();
+            // menu-hidden class should be added on second click
+            expect(menuElem.classList.contains('menu-hidden')).toBe(true);
+        });
 
 
     });
