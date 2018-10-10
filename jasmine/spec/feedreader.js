@@ -5,8 +5,6 @@
  */
 
 
-/* *** NOTE: A spec contains one or more expectations that test the state of the code. *** */ 
-
 
 /* We're placing all of our tests within the $() function,
  * since some of these tests may require DOM elements. We want
@@ -106,19 +104,19 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         // declare variable
-        let entryElem;
+        let entryElems;
 
         // code to execute before each spec
         beforeEach(function (done) {
             loadFeed(0, function () {
-                // get target
-                entryElem = document.querySelectorAll('.feed');
+                // get targets
+                entryElems = document.querySelectorAll('.entry');
                 done();
             });
         });
 
         it('at least one entry inside feed', function (done) {
-            expect(entryElem.length).toBeGreaterThan(0);
+            expect(entryElems.length).toBeGreaterThan(0);
             done();
         });
 
@@ -138,14 +136,16 @@ $(function() {
 
          // code to execute before each spec
          beforeEach(function(done) {
-            loadFeed(2, function() {
+            loadFeed(0, function() {
                 firstFeed = document.querySelector('.entry-link').innerHTML;
-                done();
-            });
+                console.log(firstFeed);
 
-            loadFeed(2, function() {
-                secondFeed = document.querySelector('.entry-link').innerHTML;
-                done();
+                // execute second loadFeed after first loadFeed finishes
+                loadFeed(1, function() {
+                    secondFeed = document.querySelector('.entry-link').innerHTML;
+                    console.log(secondFeed);
+                    done();
+                });
             });
          });
 
