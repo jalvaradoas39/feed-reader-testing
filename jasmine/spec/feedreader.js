@@ -32,11 +32,10 @@ $(function() {
          * and that the URL is not empty.
          */
          it('should have URL defined', function() {
-             let len = allFeeds.length;
-             for (var i=0; i < len; i++) {
-                expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url.length).not.toBe(0);
-             }
+            allFeeds.forEach(function(feed) {
+                expect(feed.url).toBeDefined();
+                expect(feed.url.length).not.toBe(0);
+            });
          });
 
         /* TODO: Write a test that loops through each feed
@@ -44,11 +43,10 @@ $(function() {
          * and that the name is not empty.
          */
          it('should have name defined', function() {
-             let len = allFeeds.length;
-             for (var i=0; i < len; i++) {
-                expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name.length).not.toBe(0);
-             }
+            allFeeds.forEach(function(feed) {
+                expect(feed.name).toBeDefined();
+                expect(feed.name.length).not.toBe(0);
+            });
          });
 
     });
@@ -62,9 +60,10 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+        let menuElem = document.getElementsByTagName('body')[0];
+
         it('should be hidden by default', function() {
             // set up target element
-            let menuElem = document.getElementsByTagName('body')[0];
             // upon initial pageload, menu-hidden class set by default
             expect(menuElem.classList.contains('menu-hidden')).toBe(true);
         });
@@ -76,7 +75,6 @@ $(function() {
           */
         it('should toggle visibility when clicked', function() {
             // set up our target elements
-            let menuElem = document.getElementsByTagName('body')[0];
             let menuIconElem = document.querySelector('.menu-icon-link');
 
             // use click() to simulate first click on element
@@ -109,7 +107,7 @@ $(function() {
         beforeEach(function (done) {
             loadFeed(0, function () {
                 // get targets
-                entryElems = document.querySelectorAll('.entry');
+                entryElems = document.querySelectorAll('.feed .entry');
                 done();
             });
         });
