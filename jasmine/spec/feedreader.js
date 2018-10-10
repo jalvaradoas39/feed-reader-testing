@@ -5,7 +5,6 @@
  */
 
 
-
 /* We're placing all of our tests within the $() function,
  * since some of these tests may require DOM elements. We want
  * to ensure they don't run until the DOM is ready.
@@ -33,8 +32,8 @@ $(function() {
          * and that the URL is not empty.
          */
          it('should have URL defined', function() {
-             for (var i=0; i < allFeeds.length; i++) {
-                //console.log(allFeeds[i].url);
+             let len = allFeeds.length;
+             for (var i=0; i < len; i++) {
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
              }
@@ -45,8 +44,8 @@ $(function() {
          * and that the name is not empty.
          */
          it('should have name defined', function() {
-             for (var i=0; i < allFeeds.length; i++) {
-                //console.log(allFeeds[i].url);
+             let len = allFeeds.length;
+             for (var i=0; i < len; i++) {
                 expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name.length).not.toBe(0);
              }
@@ -115,9 +114,8 @@ $(function() {
             });
         });
 
-        it('at least one entry inside feed', function (done) {
+        it('at least one entry inside feed', function () {
             expect(entryElems.length).toBeGreaterThan(0);
-            done();
         });
 
     });
@@ -138,12 +136,10 @@ $(function() {
          beforeEach(function(done) {
             loadFeed(0, function() {
                 firstFeed = document.querySelector('.entry-link').innerHTML;
-                console.log(firstFeed);
 
                 // execute second loadFeed after first loadFeed finishes
                 loadFeed(1, function() {
                     secondFeed = document.querySelector('.entry-link').innerHTML;
-                    console.log(secondFeed);
                     done();
                 });
             });
